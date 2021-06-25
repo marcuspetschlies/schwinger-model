@@ -18,6 +18,9 @@
 #include "table_init_u.h"
 #include "solver.h"
 
+/********************************************************************/
+/********************************************************************/
+
 void spinor_ranz2 ( double * const r , unsigned int N) {
   double const norm = sqrt( 0.5 );
 
@@ -29,6 +32,8 @@ void spinor_ranz2 ( double * const r , unsigned int N) {
   }
 }  /* end of spinor_ranz2 */
 
+/********************************************************************/
+/********************************************************************/
 
 void pion_correlator ( double * const g, int nsrc, FILE * fs ) {
   
