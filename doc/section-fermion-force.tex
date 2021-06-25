@@ -1,0 +1,83 @@
+\section{Fermion force}
+
+For 2 generate quark flavors, each with Dirac operator $D$; using $\gammafive$-hermiticity $D^{\dagger} = \gammafive\,D\,\gammafive$,
+and $\mathrm{det}\left( \gammafive \right)^2 = 1$.
+
+\newcommand{\psidag}{\psi^{\dagger}}
+\newcommand{\chidag}{\chi^{\dagger}}
+\newcommand{\phidag}{\phi^{\dagger}}
+\newcommand{\Mdag}{M^{\dagger}}
+
+\begin{align}
+  \Hhamiltonian &= \frac{1}{2}\,\sum\limits_{\mu,x}\,P_{\mu,x} +  S_g\left[ U \right] + S_f\left[ U,\phi,\phidag \right]
+  \label{eq:ff-1} \\
+  %%%
+  S_f &= \phidag\,\left( M\,\Mdag \right)^{-1}\,\phi
+  \label{eq:ff-2} \\
+  %%%
+  F^{(f)}_{\mu,x} &= -\partial \Hhamiltonian / \partial \omega_{\mu,x}
+  \label{eq:ff-3} \\
+  %%%
+  &= \Imag{ 
+    \psi_x^{\dagger}\,\left( 1-\sigma_\mu \right)\,U_{\mu,x}\,\left( \Mdag\,\psi \right)_{x+\hmu}
+%%%
+    - \psi_{x+\hmu}^{\dagger}\,\left( 1+\sigma_\mu \right)\,U_{\mu,x}^{\dagger}\,\left( \Mdag\,\psi \right)_{x}
+}
+\nonumber
+\end{align}
+
+Using the following relations
+\begin{align}
+  \phi &\sim \epow{-\phidag\left( M\Mdag \right)^{-1}\,\phi} = \epow{- \frac{1}{2}\,\chidag\chi} 
+  \nonumber\\
+  %%%
+  \chi &= \sqrt{2}\,M^{-1}\,\phi
+  \nonumber \\
+  %%%
+  \phi &= \frac{1}{\sqrt{2}}\,M\,\chi \,,\quad \chi_{\mu,x} \sim \mathcal{N}\left( 0,1 \right) \mathrm{~iid}
+\label{eq:ff-4} \\
+%%%
+\psi &= \left( M\,\Mdag \right)^{-1}\,\phi
+\label{eq:ff-5} \\
+%%%
+d\left( A^{-1} \right) &= -A^{-1} \,dA\,A^{-1} \nonumber\\
+%%%
+\partial \left( M\Mdag \right)^{-1} / \partial \omega_{\mu,x} &=
+%
+-\left( M\Mdag \right)^{-1} \,\left( 
+\partial M  / \partial \omega_{\mu,x}\,\Mdag
++  M\,\partial \Mdag  / \partial \omega_{\mu,x}
+\right) \,\left( M\Mdag \right)^{-1} 
+\nonumber \\
+%%%
+\partial U_{\nu,y} / \partial \omega_{\mu,x} &= i\,U_{\mu,x}\,\delta_{x,y}\,\delta_{\mu,\nu}
+= - \partial U_{\nu,y}^{\dagger} / \partial \omega_{\mu,x}
+\nonumber
+\end{align}
+
+Sequence:
+\begin{enumerate}
+  \item draw $\chi \sim \mathcal{N}\left( 0,1 \right) \mathrm{~iid}$
+    %%%
+  \item $\phi = \frac{1}{\sqrt{2}}\,M\,\chi$
+    %%%
+  \item $\psi = \left( M\Mdag \right)^{-1}\,\phi$ via CG
+    %%%
+  \item $\lambda = \Mdag\,\psi$ auxilliary field
+    %%%#
+  \item imaginary part of
+    \begin{align*}
+    \psi_x^{\dagger}\,\left( 1-\sigma_\mu \right)\,U_{\mu,x}\,\lambda_{x+\hmu}
+%%% 
+    - \psi_{x+\hmu}^{\dagger}\,\left( 1+\sigma_\mu \right)\,U_{\mu,x}^{\dagger}\,\lambda_{x}
+    \end{align*}
+    %%%
+  \item MD update with LF integrator for EOM with $U_{\nu,y} = \epow{i\omega_{\nu,y} }$
+    \begin{align}
+      \frac{d}{d\tau} \,U_{\mu,x} &= P_{\mu,x}
+      \label{eq:eom-1} \\
+      %%%
+      \frac{d}{d\tau} \,P_{\mu,x} &= -\partial \Hhamiltonian\left[ U,\phi,\phidag \right] / \partial \omega_{\mu,x} 
+      \label{eq:eom-2}
+    \end{align}
+\end{enumerate}

@@ -1,0 +1,532 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% adjustment.tex
+%
+% PURPOSE:
+% - additional packages and customized commands
+%   
+% TODO:
+%
+% Di 11. Okt 15:49:35 EEST 2011
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{slashed}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{lscape}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{mathbbol}
+\usepackage{graphicx}
+\usepackage{color}
+%%% \usepackage{html}
+\usepackage{hyperref}
+%%% \usepackage{bbm}
+\usepackage{bbold}
+\usepackage{listings}
+\usepackage{dsfont}
+\usepackage{ifthen}
+\usepackage{placeins}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% --------------- traces, determinants, brackets,
+%%                 exponential, real part, imaginary part ------------------
+\newcommand{\Tr}[1]{\mathrm{Tr}\left(#1\right)}
+\newcommand{\tr}[1]{\mathrm{tr}\left(#1\right)}
+\renewcommand{\det}[1]{\mathrm{det}\left( #1 \right)}
+\newcommand{\brackets}[1]{\langle #1 \rangle}
+\newcommand{\bbrackets}[1]{\langle\langle #1 \rangle\rangle}
+\newcommand{\state}[1]{\left|\, #1 \,\right.\rangle}
+\newcommand{\ssket}[1]{\left|\left|\, #1 \,\right.\right.\rangle\rangle}
+\newcommand{\ssbra}[1]{ \langle\langle \left.\left.  \, #1 \, \right|\right| }
+\newcommand{\rbrackets}[1]{\left( #1 \right)}
+\newcommand{\sbrackets}[1]{\left[ #1 \right]}
+\newcommand{\cbrackets}[1]{\left\{ #1 \right\}}
+\newcommand{\bracketsf}[1]{\langle #1 \rangle_f}
+\newcommand{\bracketsUeff}[1]{\langle #1 \rangle_{U_{eff}}}
+\newcommand{\modulus}[1]{\left|\,#1\,\right|}
+\newcommand{\bracketStates}[3]{\langle\, #1 \, \left|\, #2 \,\right|\, #3 \, \rangle }
+
+\newcommand{\Expval}[1]{\mathrm{E}\left[ #1 \right]}
+\newcommand{\Real}[1]{\mathrm{Re}\left( #1 \right)}
+\newcommand{\Imag}[1]{\mathrm{Im}\left( #1 \right)}
+\newcommand{\epow}[1]{\mathrm{e}^{#1}}
+\newcommand{\commutator}[2]{\left[ {#1} \,,\, {#2} \right]}
+
+
+\newcommand{\hmu}{\hat{\mu}}
+\newcommand{\hnu}{\hat{\nu}}
+\newcommand{\qhatmu}{\hat{q}_\mu}
+\newcommand{\qhatnu}{\hat{q}_\nu}
+\newcommand{\qhat}{\hat{q}}
+\newcommand{\Qhatmu}{\hat{Q}_\mu}
+\newcommand{\Qhatnu}{\hat{Q}_\nu}
+\newcommand{\Qhat}{\hat{Q}}
+\newcommand{\khat}{\hat{k}}
+\newcommand{\rhat}{\hat{r}}
+\newcommand{\vhat}{\hat{v}}
+
+\newcommand{\nablamu}{\nabla_{\mu}}
+\newcommand{\nablamuf}{\nabla_{\mu}^f}
+\newcommand{\nablamub}{\nabla_{\mu}^b}
+
+\newcommand{\nablalr}{\overset{\leftrightarrow}{\nabla}}
+\newcommand{\nablalrp}{\overset{\leftrightarrow}{\nabla}^+}
+\newcommand{\nablalrm}{\overset{\leftrightarrow}{\nabla}^-}
+
+\newcommand{\nablaslr}{\overset{\leftrightarrow}{\slashed{\nabla}}}
+\newcommand{\nablal}{\overset{\leftarrow}{\nabla}}
+\newcommand{\nablar}{\overset{\rightarrow}{\nabla}}
+\newcommand{\nablasl}{\overset{\leftarrow}{\slashed{\nabla}}}
+\newcommand{\nablasr}{\overset{\rightarrow}{\slashed{\nabla}}}
+\newcommand{\nablaf}{\nabla^f}
+\newcommand{\nablab}{\nabla^b}
+\newcommand{\Deltar}{\overset{\rightarrow}{\Delta}}
+\newcommand{\Deltal}{\overset{\leftarrow}{\Delta}}
+\newcommand{\Unux}{U_{\nu}(x)}
+\newcommand{\Pparity}{\mathcal{P}}
+\newcommand{\Ttimereversal}{\mathcal{T}}
+\newcommand{\Cchargeconjugation}{\mathcal{C}}
+\newcommand{\nablabar}{\bar{\nabla}}
+\newcommand{\nablabars}{\slashed{\bar{\nabla}}}
+
+\newcommand{\tauone}{\tau^{1}}
+\newcommand{\tautwo}{\tau^{2}}
+\newcommand{\tauthree}{\tau^{3}}
+
+\newcommand{\gammamu}{\gamma_{\mu}}
+\newcommand{\gammanu}{\gamma_{\nu}}
+\newcommand{\gammafive}{\gamma_{5}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% abbreviations for parts of the Dirac matrix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Umux}{U_{\mu}(x)}
+\newcommand{\Umuxd}{U_{\mu}(x)^\dagger}
+\newcommand{\Umuxmad}{U_{\mu}(x-a\hmu)^{\dagger}}
+\newcommand{\Umuxma}{U_{\mu}(x-a\hmu)}
+
+\newcommand{\Unuy}{U_{\nu}(y)}
+\newcommand{\Unuyd}{U_{\nu}(y)^\dagger}
+\newcommand{\Unuynad}{U_{\nu}(y-a\hmu)^{\dagger}}
+
+\newcommand{\Hmuxp}{H^{+}_\mu(x)}
+\newcommand{\Hmuxm}{H^{-}_\mu(x)}
+\newcommand{\Hmuxpap}{H^{+}_\mu(x+a\hmu)}
+\newcommand{\Hmuxmap}{H^{+}_\mu(x-a\hmu)}
+\newcommand{\Hmuxmam}{H^{-}_\mu(x-a\hmu)}
+
+\newcommand{\Hnuyp}{H^{+}_\nu(y)}
+\newcommand{\Hnuym}{H^{-}_\nu(y)}
+\newcommand{\Hnuypap}{H^{+}_\nu(y+a\hnu)}
+\newcommand{\Hnuymap}{H^{+}_\nu(y-a\hnu)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% vector currents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Jmux}{J_{\mu\,x}}
+\newcommand{\Jnuy}{J_{\nu\,y}}
+\newcommand{\Jem}{J^{\mathrm{em}}}
+\newcommand{\Jemmu}{J^{\mathrm{em}}_{\mu}}
+\newcommand{\Jemnu}{J^{\mathrm{em}}_{\nu}}
+\newcommand{\Jctnu}{S_{\nu}}
+% flavor curremts
+\newcommand{\Jumu}{J^{u}_{\mu}}
+\newcommand{\Jdmu}{J^{d}_{\mu}}
+\newcommand{\Jsmu}{J^{s}_{\mu}}
+\newcommand{\Jcmu}{J^{c}_{\mu}}
+\newcommand{\Junu}{J^{u}_{\nu}}
+\newcommand{\Jdnu}{J^{d}_{\nu}}
+\newcommand{\Jsnu}{J^{s}_{\nu}}
+\newcommand{\Jcnu}{J^{c}_{\nu}}
+\newcommand{\current}[3]{{#1}^{#2}_{#3}}
+
+
+\newcommand{\curr}[2]{j_{#1}\left( #2 \right)}
+
+\newcommand{\mnull}{\ensuremath{m_{0}}}
+\newcommand{\mutilde}{\ensuremath{\tilde{\mu}}}
+\newcommand{\munull}{\ensuremath{\mu_{0}}}
+\newcommand{\mulight}{\ensuremath{\mu_{l}}}
+
+\newcommand{\kcr}{\ensuremath{\kappa_{\mathrm{cr}}}}
+\newcommand{\mcr}{\ensuremath{m_{\mathrm{crit}}}}
+
+\newcommand{\mpcac}{\ensuremath{m^{\mathrm{PCAC}}}}
+
+\newcommand{\Pimn}{\Pi_{\mu\nu}}
+\newcommand{\Pimnt}{\tilde{\Pi}_{\mu\nu}}
+
+\newcommand{\PiMN}{\Pi^{\mu\nu}}
+\newcommand{\PiMNt}{\tilde{\Pi}^{\mu\nu}}
+\newcommand{\Pidisc}{\Pi^{disc}}
+\newcommand{\Pidiscsub}{\hat{\Pi}^{disc}}
+\newcommand{\Pidiscmn}{\Pi^{disc}_{\mu\nu}}
+\newcommand{\Pidiscmnt}{\tilde{\Pi}^{disc}_{\mu\nu}}
+\newcommand{\Piconn}{\Pi^{conn}}
+\newcommand{\Piconnsub}{\hat{\Pi}^{conn}}
+\newcommand{\Picdsub}{\hat{\Pi}^{conn+disc}}
+\newcommand{\Picd}{\Pi^{conn+disc}}
+
+\newcommand{\asop}{\frac{\alpha_s}{\pi}}
+\newcommand{\basop}{\left(\frac{\alpha_s}{\pi}\right)}
+
+\newcommand{\lsmu}{\log(s/\mu^2)}
+\newcommand{\lsmc}{\log(s/M_c^2)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --------------- (L and R) lepton fields ------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\lepton}{l}
+\newcommand{\leptonbar}{\bar{l}}
+\newcommand{\neutrino}{\nu}
+\newcommand{\neutrinol}{\neutrino_{l}}
+\newcommand{\neutrinobar}{\bar{\neutrino}}
+\newcommand{\neutrinolbar}{\bar{\neutrino}_{l}}
+
+\newcommand{\leptonright}{ l_R }
+\newcommand{\leptonleft }{ l_L }
+\newcommand{\leptonrightbar}{ \bar{l}_R }
+\newcommand{\leptonleftbar }{ \bar{l}_L }
+
+\newcommand{\neutrinolright}{ \nu_{l\,R} }
+\newcommand{\neutrinolleft} { \nu_{l\,L} }
+\newcommand{\neutrinolrightbar}{ \bar{\nu}_{l\,R} }
+\newcommand{\neutrinolleftbar} { \bar{\nu}_{l\,L} }
+
+\newcommand{\electron}{e}
+\newcommand{\electronbar}{\bar{e}}
+\newcommand{\muon}{\mu}
+\newcommand{\muonbar}{\bar{\mu}}
+\newcommand{\taubar}{\bar{\tau}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lepton anomalous magnetic momenta
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\amu}{a_{\muon}}
+\newcommand{\amuhad}{a_{\muon}^{\mathrm{had}}}
+\newcommand{\amuhvp}{a_{\muon}^{\mathrm{hvp}}}
+\newcommand{\amuhlo}{a_{\muon}^{\mathrm{hlo}}}
+\newcommand{\amuhlorho}{a_{\muon,\,\rho}^{\mathrm{hlo}}}
+\newcommand{\amuhloomega}{a_{\muon,\,\omega}^{\mathrm{hlo}}}
+\newcommand{\amuhlophi}{a_{\muon,\,\Phi}^{\mathrm{hlo}}}
+\newcommand{\amutheo}{a_{\muon}^{\mathrm{th}}}
+\newcommand{\amuexp}{a_{\muon}^{\mathrm{ex}}}
+
+\newcommand{\aelhad}{a_{\electron}^{had}}
+\newcommand{\aelhvp}{a_{\electron}^{hvp}}
+\newcommand{\aelhlo}{a_{\electron}^{hlo}}
+
+\newcommand{\atau}{a_{\tau}}
+\newcommand{\atauhad}{a_{\tau}^{\mathrm{had}}}
+\newcommand{\atauhvp}{a_{\tau}^{\mathrm{hvp}}}
+\newcommand{\atauhlo}{a_{\tau}^{\mathrm{hlo}}}
+
+\newcommand{\alepton}{a_{l}}
+\newcommand{\aleptonhad}{a_{l}^{\mathrm{had}}}
+\newcommand{\aleptonhvp}{a_{l}^{\mathrm{hvp}}}
+\newcommand{\aleptonhlo}{a_{l}^{\mathrm{hlo}}}
+
+\newcommand{\amuweak}{\amu^{\mathrm{weak}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --------------- coupling and masses  ------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mlepton}{m_{l}}
+\newcommand{\melectron}{m_{e}}
+\newcommand{\mmuon}{m_{\mu}}
+\newcommand{\mtau}{m_{\tau}}
+\newcommand{\mneutrino}{m_{\neutrino}}
+\newcommand{\mneutrinol}{m_{\neutrinol}}
+\newcommand{\mquark}{m_{q}}
+\newcommand{\mquarkR}{m_{q\,R}}
+\newcommand{\mquarkbar}{\bar{m}_{q}}
+\newcommand{\mup}     {m_{u}}
+\newcommand{\mdown}   {m_{d}}
+\newcommand{\mstrange}{m_{s}}
+\newcommand{\mcharm}  {m_{\mathrm{charm}}}
+\newcommand{\mc}{m_{c}}
+\newcommand{\mbottom} {m_{\mathrm{bottom}}}
+\newcommand{\mpi}{m_{\pi}}
+\newcommand{\mps}{m_{PS}}
+\newcommand{\fps}{f_{PS}}
+\newcommand{\fpi}{f_{\pi}}
+\newcommand{\mfps}{\frac{\mps}{\fps}}
+\newcommand{\mfpi}{\frac{\mpi}{\fpi}}
+\newcommand{\Mfps}{\frac{m_M}{\fps}}
+\newcommand{\Mfpi}{\frac{m_M}{\fpi}}
+
+\newcommand{\gvem}{g_{\mathrm{V},\mathrm{em}}}
+
+
+\newcommand{\xipi}{\xi_\pi}
+\newcommand{\xips}{\xi_{PS}}
+
+\newcommand{\metac}{m_{\eta_c}}
+\newcommand{\mjpsi}{m_{J/\psi}}
+\newcommand{\mfjpsi}{\frac{\mjpsi}{\fps}}
+\newcommand{\mdpm}{m_{D^{\pm}}}
+\newcommand{\mdzero}{m_{D^{0}}}
+\newcommand{\mfD}{\frac{m_D}{\fps}}
+\newcommand{\mfetac}{\frac{m_{\eta_c}}{\fps}}
+\newcommand{\mchizero}{m_{\chi_0}}
+
+\newcommand{\that}{\hat{t}}
+\newcommand{\That}{\hat{T}}
+\newcommand{\mhat}{\hat{m}}
+
+\newcommand{\mrho}{m_{\rho}}
+\newcommand{\frho}{f_{\rho}}
+\newcommand{\alphas}{\alpha_{s}}
+\newcommand{\alphasbar}{\bar{\alpha}_{s}}
+\newcommand{\asPi}{\frac{\alpha_{s}}{\pi}}
+\newcommand{\momega}{m_{\omega}}
+\newcommand{\fomega}{f_{\omega}}
+\newcommand{\mphi}{m_{\Phi}}
+\newcommand{\fphi}{f_{\Phi}}
+\newcommand{\mcbar}{\bar{m}_c}
+\newcommand{\alphaQED}{\alpha_{\mathrm{QED}}}
+\newcommand{\alphaQCD}{\alpha_{\mathrm{QCD}}}
+\newcommand{\gsbare}{g_s}
+\newcommand{\gsR}{g_{s\,R}}
+\newcommand{\gshatbare}{\hat{g}_s}
+\newcommand{\gshatR}{\hat{g}_{s\,R}}
+\newcommand{\fv}{f_{V}}
+\newcommand{\mv}{m_{V}}
+
+
+\newcommand{\mfjpsiref}{m_{J/\psi}^{ref}/f_\pi}
+\newcommand{\mfpiref}{m_{\pi}^{ref}/f_\pi}
+
+\newcommand{\fermi}{\,\mathrm{fm}}
+\newcommand{\gev}{\,\mathrm{GeV}}
+\newcommand{\mev}{\,\mathrm{MeV}}
+\newcommand{\second}{\,\mathrm{s}}
+\newcommand{\mubar}{\bar{\mu}}
+
+%% --------------- meson names ------------------
+\newcommand{\etac}{\eta_c}
+\newcommand{\jpsi}{J/\psi}
+
+%% --------------- quark fields ------------------
+\newcommand{\Psibar}{\bar{\Psi}}
+\newcommand{\chix}{\chi_{x}}
+\newcommand{\chixmu}{\chi_{x+\hmu}}
+\newcommand{\chibarx}{\bar{\chi}_{x}}
+\newcommand{\chibar}{\bar{\chi}}
+\newcommand{\chibarxmu}{\bar{\chi}_{x+\hmu}}
+\newcommand{\cbar}{\bar{c}}
+\newcommand{\ccbar}{c\bar{c}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\quark}{q}
+\newcommand{\quarkbar}{\bar{q}}
+\newcommand{\dbar}{\bar{d}}
+\newcommand{\rbar}{\bar{r}}
+\newcommand{\sbar}{\bar{s}}
+\newcommand{\ubar}{\bar{u}}
+\newcommand{\qbar}{\bar{q}}
+\newcommand{\Qbar}{\bar{Q}}
+\newcommand{\Jbar}{\bar{J}}
+\newcommand{\Kbar}{\bar{K}}
+\newcommand{\phibar}{{\bar{\phi}}}
+
+
+%% --------------- gluon fields ------------------
+\newcommand{\gluon}{A}
+\newcommand{\gluonmu}{\gluon_{\mu}}
+\newcommand{\gluonnu}{\gluon_{\nu}}
+\newcommand{\gluonmua}{\gluon_{\mu}^a}
+\newcommand{\gluonnua}{\gluon_{\nu}^a}
+\newcommand{\gluona}{\gluon^a}
+
+%% --------------- photon field -----------------
+\newcommand{\photon}{\gamma}
+\newcommand{\photonmu}{\gamma_{\mu}}
+\newcommand{\photonstar}{\gamma^{*}}
+
+%% --------------- ghost field -----------------
+\newcommand{\ghost}{c}
+\newcommand{\ghostbar}{\bar{c}}
+
+%% --------------- equations ------------------
+%\newcommand{\ba}{\begin{align}}
+%\newcommand{\ea}{\end{align}}
+\newcommand{\balign}{\begin{align}}
+\newcommand{\ealign}{\end{align}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\balignat}[1]{\begin{alignat}{#1}}
+\newcommand{\ealignat}{\end{alignat}}
+
+
+%% --------------- figures ------------------
+\newcommand{\bfig}{\begin{figure}}
+\newcommand{\efig}{\end{figure}}
+
+%% --------------- center ------------------
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+
+%% --------------- tables ------------------
+\newcommand{\btab}{\begin{table}}
+\newcommand{\etab}{\end{table}}
+
+%% --------------- comments ------------------
+\newcommand{\bcom}{\begin{comment}}
+\newcommand{\ecom}{\end{comment}}
+
+%% --------------- itemization ------------------
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+
+%% --------------- enumeration ------------------
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+
+%% --------------- three vectors ------------------
+\newcommand{\pvec}{\vec{p}}
+\newcommand{\Pvec}{\vec{P}}
+\newcommand{\qvec}{\vec{q}}
+\newcommand{\Qvec}{\vec{Q}}
+\newcommand{\xvec}{\vec{x}}
+\newcommand{\Xvec}{\vec{X}}
+\newcommand{\yvec}{\vec{y}}
+\newcommand{\Yvec}{\vec{Y}}
+\newcommand{\zvec}{\vec{z}}
+\newcommand{\kvec}{\vec{k}}
+\newcommand{\rvec}{\vec{r}}
+\newcommand{\evec}{\vec{e}}
+\newcommand{\wvec}{\vec{w}}
+\newcommand{\dvec}{\vec{d}}
+\newcommand{\mvec}{\vec{m}}
+\newcommand{\nvec}{\vec{n}}
+\newcommand{\vvec}{\vec{v}}
+\newcommand{\uvec}{\vec{u}}
+
+%% --------------- higgs fields ------------------
+\newcommand{\higgs}{h}
+
+%% --------------- Dirac operators ------------------
+\newcommand{\dslash}{\slashed{\partial}}
+\newcommand{\Dslash}{\slashed{\mathrm{D}}}
+\newcommand{\DtmW}{D^{\mathrm{tm}}_\mathrm{W}}
+\newcommand{\DtmWu}{D^{\mathrm{tm\,u}}_\mathrm{W}}
+\newcommand{\DtmWd}{D^{\mathrm{tm\,d}}_\mathrm{W}}
+\newcommand{\DtmWud}{D^{\mathrm{tm\,u/d}}_\mathrm{W}}
+\newcommand{\DtmWdu}{D^{\mathrm{tm\,d/u}}_\mathrm{W}}
+
+%% --------------- various ------------------
+\newcommand{\gmunu}{g_{\mu\nu}}
+\newcommand{\gmn}{\ensuremath{g_{\mu\nu}}}
+\newcommand{\gMN}{\ensuremath{g^{\mu\nu}}}
+\newcommand{\deltamunu}{\delta_{\mu\nu}}
+\newcommand{\chipt}{\chi\mathrm{PT}}
+\newcommand{\MSbar}{\overline{\mathrm{MS}}}
+\newcommand{\Llagrange}{\mathcal{L}}
+\newcommand{\Hhamiltonian}{\mathcal{H}}
+\newcommand{\Llattice}{\mathbb{L}}
+\newcommand{\Saction}{\mathcal{S}}
+\newcommand{\chisq}{\chi^2}
+\newcommand{\LambdaQCD}{\Lambda_{\mathrm{QCD}}}
+\newcommand{\LambdaMSbar}{\Lambda_{\overline{ \mathrm{MS} } }}
+\newcommand{\LambdaMSbarNftwo}{\Lambda_{\overline{ \mathrm{MS} } }^{(2)} }
+\newcommand{\matrixelement}[1]{\mathcal{M}\left(#1\right)}
+\newcommand{\order}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\partitionfunction}{\mathcal{Z}}
+\newcommand{\Qem}{Q^{\mathrm{em}}}
+\newcommand{\munu}{{\mu\nu}}
+
+\newcommand{\gmumtwo}{g_{\mu}-2}
+
+%% ------------------- arcus cotangent -----------------
+\newcommand{\acotan}{\mathrm{arccotan}}
+\newcommand{\artanh}{\mathrm{artanh}}
+
+
+%% vp tensor = vp_prefactor times vp function
+\newcommand{\vpprefactor}[1]{\rbrackets{ {#1}_\mu {#1}_\nu - \deltamunu\,{#1}^2 }}
+
+
+%% particle fields
+\newcommand{\Deltapp}{\ensuremath{\Delta^{++}}}
+\newcommand{\mDelta}{\ensuremath{m_\Delta}}
+
+\newcommand{\matelem}{\mathcal{M}}
+\newcommand{\Ggroup}{\mathcal{G}}
+
+\newcommand{\Sigmasp}{\Sigma^{*+}}
+\newcommand{\Xism}{\Xi^{*-}}
+
+%% --------------- paths ------------------
+\newcommand{\pathtohome}{./}
+\newcommand{\localpath}{\pathtohome}
+\newcommand{\figurepath}{\localpath/figures}
+\newcommand{\tablepath}{\localpath/tables}
+\newcommand{\externalpath}{\localpath/external_sources}
+
+\newcommand{\refeq}[1]{(\ref{#1})}
+\newcommand{\reffig}[1]{[\ref{#1}]}
+\newcommand{\reftab}[1]{\{\ref{#1}\}}
+
+\newcommand{\tdagger}{{\tilde{\dagger}}}
+
+\newcommand{\DiracFermion}{\textit{DiracFermion~}}
+\newcommand{\DiracPropagator}{\textit{DiracPropagator~}}
+
+\newcommand{\Zthreeset}{\mathbb{Z}^3}
+\newcommand{\seqn}{\mathrm{seq}^n}
+\newcommand{\seqtwo}{\mathrm{seq}^2}
+\newcommand{\Bbar}{\bar{B}}
+
+\newcommand{\Vonereduce}{ {\mathcal{V}_1} }
+\newcommand{\Vtworeduce}{{\mathcal{V}_2} }
+\newcommand{\Vthreereduce}{{ \mathcal{V}_3} }
+\newcommand{\Vfourreduce}{{ \mathcal{V}_4} }
+\newcommand{\Tonereduce}{{ \mathcal{T}_1} }
+\newcommand{\Ttworeduce}{{ \mathcal{T}_2} }
+\newcommand{\Vfivereduce}{{ \mathcal{V}_5} }
+\newcommand{\Vsixreduce}{{ \mathcal{V}_6} }
+
+\newcommand{\threept}{^{\mathrm{3pt}}}
+\newcommand{\Bthree}{B^{\mathrm{3pt}}}
+\newcommand{\Btildethree}{\tilde{B}^\mathrm{3pt}}
+\newcommand{\Wthree}{W^{\mathrm{3pt}}}
+\newcommand{\Ztildethree}{\tilde{Z}^\mathrm{3pt}}
+\newcommand{\Zthree}{Z^{\mathrm{3pt}}}
+\newcommand{\Wtildethree}{\tilde{W}^\mathrm{3pt}}
+\newcommand{\Btwo}{B^{\mathrm{2pt}}}
+\newcommand{\Btildetwo}{\tilde{B}^\mathrm{2pt}}
+\newcommand{\Wtwo}{W^{\mathrm{2pt}}}
+\newcommand{\Wtildetwo}{\tilde{W}^\mathrm{2pt}}
+\newcommand{\Ztwo}{Z^{\mathrm{2pt}}}
+\newcommand{\Ztildetwo}{\tilde{Z}^\mathrm{2pt}}
+
+\newcommand{\Tthree}{T^{\mathrm{3pt}}}
+\newcommand{\Ttildethree}{\tilde{T}^\mathrm{3pt}}
+
+\newcommand{\Ttwo}{T^{\mathrm{2pt}}}
+\newcommand{\Ttildetwo}{\tilde{T}^\mathrm{2pt}}
+
+\newcommand{\hqbar}{\bar{h}}
+
+\newcommand{\Gammatilde}{\tilde{\Gamma}}
+\newcommand{\phitilde}{\tilde{\phi}}
+
+\newcommand{\Ttrans}{\hat{\mathrm{T}}}
+\newcommand{\Ptrans}{\hat{\mathrm{P}}}
+\newcommand{\Ctrans}{\hat{\mathrm{C}}}
