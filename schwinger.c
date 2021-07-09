@@ -602,7 +602,9 @@ int main(int argc, char **argv) {
    * Monte-Carlo iteration
    *
    ********************************************************************/
-  FILE * meas_fs = fopen ( "meas.tab", "w" );
+  char meas_filename[200];
+  sprintf ( meas_filename, "meas_L%dT%d_b%6.4f_m%6.4f.tab", L, T, beta, m0 );
+  FILE * meas_fs = fopen ( meas_filename, "w" );
 
   int meas_count = 0;
   for ( int iter = 0; iter < Niter; iter++ ) {
@@ -626,7 +628,7 @@ int main(int argc, char **argv) {
     if ( (iter +1) % meas_every == 0 ) {
 
       double const S[2] = { plaq ( g , 0), theta ( g, 0 ) };
-      fprintf ( meas_fs, "%4d %4d %16.7e %16.7e\n", iter+1, meas_count, S[0], S[1] );
+      fprintf ( meas_fs, "# %4d %4d %16.7e %16.7e\n", iter+1, meas_count, S[0], S[1] );
 
       meas_count++;
 
